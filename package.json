@@ -1,0 +1,21 @@
+{
+  "name": "my-node-module",
+  "version": "1.0.0",
+  "description": "Util library for me",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/charon1212/my-node-module.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/charon1212/my-node-module/issues"
+  },
+  "homepage": "https://github.com/charon1212/my-node-module#readme",
+  "private": false
+}
