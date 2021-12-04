@@ -1,13 +1,14 @@
 {
   "name": "util-charon1212",
-  "version": "0.0.4",
+  "version": "0.0.13",
   "description": "Util library for me",
-  "main": "build/hello.js",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "tsc"
   },
-  "files":[
+  "files": [
     "build",
     "README.md",
     "LICENSE",
@@ -15,14 +16,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/charon1212/my-node-module.git"
+    "url": "git+https://github.com/charon1212/util-charon1212.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/charon1212/my-node-module/issues"
+    "url": "https://github.com/charon1212/util-charon1212/issues"
   },
-  "homepage": "https://github.com/charon1212/my-node-module#readme",
+  "homepage": "https://github.com/charon1212/util-charon1212#readme",
   "private": false
 }

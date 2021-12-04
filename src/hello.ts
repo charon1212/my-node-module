@@ -1,3 +1,3 @@
-export const hello = () => {
-  console.log('hello my-node-module');
+export const helloUtilCharon1212 = () => {
+  console.log('hello util-charon1212');
 };
