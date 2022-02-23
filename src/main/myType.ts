@@ -2,4 +2,4 @@
 
 type Tup<N extends number, Arr extends unknown[] = []> = Arr['length'] extends N ? Arr : Tup<N, [...Arr, unknown]>;
 export type AddNum<A extends number, B extends number> = [...Tup<A>, ...Tup<B>]['length'];
-export type SubNum<A extends number, B extends number> = Tup<A> extends [...Tup<B>, infer R] ? R : never;
+export type SubNum<A extends number, B extends number> = Tup<A> extends [...Tup<B>, ...infer R] ? R['length'] : never;
