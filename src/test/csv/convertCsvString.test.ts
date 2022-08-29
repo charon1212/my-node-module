@@ -1,5 +1,5 @@
 import { myAssertEqual } from "../util/assert/myAssert";
-import { convertCsvString } from '../../main/csv';
+import { convertCsvString } from '../..';
 
 describe('convertCsvString', () => {
   const testData = [

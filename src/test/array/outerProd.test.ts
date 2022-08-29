@@ -1,4 +1,4 @@
-import { outerProd } from '../../main/array';
+import { outerProd } from '../..';
 import { myAssertEqual } from '../util/assert/myAssert';
 
 describe('outerProd', () => {
