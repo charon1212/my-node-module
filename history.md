@@ -7,3 +7,4 @@
 - v1.3.0 ExpandTuple追加
 - v1.4.0 ShiftJISエンコードの追加
 - v1.5.0 convertCsvStringの追加
+- v1.6.0 outerProdの追加
