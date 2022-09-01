@@ -1,4 +1,4 @@
-type OuterProd<T extends (readonly unknown[])[]> = OuterProdTuple<T>[];
+type OuterProd<T extends (readonly unknown[])[]> = number extends T['length'] ? T : OuterProdTuple<T>[];
 type OuterProdTuple<T extends (readonly unknown[])[]> = T extends [infer P extends (readonly unknown[]), ...infer Q extends (readonly unknown[])[]] ? [P[number], ...OuterProdTuple<Q>] : [];
 
 /**
@@ -8,7 +8,7 @@ type OuterProdTuple<T extends (readonly unknown[])[]> = T extends [infer P exten
  * @returns Outer product result.
  */
 export const outerProd = <T extends (readonly unknown[])[]>(...arr: T): OuterProd<T> => {
-  if (arr.length === 0) return [];
+  if (arr.length === 0) return [] as any;
   if (arr.length === 1) return arr[0].map((a) => [a]) as any;
   const first = arr.shift()!;
   const rest = outerProd(...arr);
@@ -19,19 +19,21 @@ export const outerProd = <T extends (readonly unknown[])[]>(...arr: T): OuterPro
   return result;
 };
 
-type InnerProd<T extends (readonly unknown[])[]> = InnerProdTuple<T>[];
+type InnerProd<T extends (readonly unknown[])[]> = number extends T['length'] ? T : InnerProdTuple<T>[];
 type InnerProdTuple<T extends (readonly unknown[])[]> = T extends [infer P extends (readonly unknown[]), ...infer Q extends (readonly unknown[])[]] ? [P[number], ...InnerProdTuple<Q>] : [];
 
 /**
  * Create array's inner product.  
  * e.g. innerProd(['a','b'], [1,2], [true,false]) returns [['a',1,true],['b',2,false]].
+ *
+ * This method DO NOT checks that all array's length are same each other. Return array's length is maximum size of input array.
  * @param arr Source array of inner product.
  * @returns Inner product result.
  */
 export const innerProd = <T extends (readonly unknown[])[]>(...arr: T): InnerProd<T> => {
-  if (arr.length === 0) return [];
+  if (arr.length === 0) return [] as any;
   const n = Math.max(...arr.map((a) => a.length));
   const result = [] as any;
   for (let i = 0; i < n; i++) result.push(arr.map((a) => a[i]));
   return result;
-}
+};
