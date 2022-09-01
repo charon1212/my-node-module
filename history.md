@@ -8,3 +8,4 @@
 - v1.4.0 ShiftJISエンコードの追加
 - v1.5.0 convertCsvStringの追加
 - v1.6.0 outerProdの追加
+- v1.7.0 innerProdの追加
