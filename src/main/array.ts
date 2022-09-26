@@ -37,3 +37,19 @@ export const innerProd = <T extends (readonly unknown[])[]>(...arr: T): InnerPro
   for (let i = 0; i < n; i++) result.push(arr.map((a) => a[i]));
   return result;
 };
+
+/**
+ * Create number array.
+ *
+ * - Arr(4) => [0,1,2,3]
+ * - Arr(2,7) => [2,3,4,5,6]
+ * - Arr(5,30,5) => [5,10,15,20,25]
+ */
+export const Arr = (start?: number, last?: number, step?: number): number[] => {
+  if (start === undefined) return [];
+  if (last === undefined) return [...Array(start)].map((_, i) => i);
+  if (step === undefined) return [...Array(last - start)].map((_, i) => i + start);
+  const arr = [] as number[];
+  for (let i = start; i < last; i += step)arr.push(i);
+  return arr;
+};
