@@ -1,4 +1,4 @@
-import { Arr } from "../../main/array";
+import { Arr } from "../../index";
 import { myAssertEqual } from "../util/assert/myAssert";
 
 describe('Arr', () => {
