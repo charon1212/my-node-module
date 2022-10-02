@@ -1,4 +1,4 @@
-export const timeMeasure = (proc: (complete: () => void) => {}) => {
+export const timeMeasure = (proc: (complete: () => void) => void) => {
   const hrStart = process.hrtime();
   return new Promise<{ s: number, ms: number }>((resolve, reject) => {
     proc(() => {
