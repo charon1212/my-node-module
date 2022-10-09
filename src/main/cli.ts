@@ -10,7 +10,8 @@
  * setTimeout(() => complete(), 5000);
  * ```
  */
-export const getOutputProgress = (out: NodeJS.WriteStream = process.stdout): [put: (text: string) => void, complete: () => void] => {
+export const getOutputProgress = (args?: { out?: NodeJS.WriteStream }): [put: (text: string) => void, complete: () => void] => {
+  const out = args?.out ?? process.stdout;
   return [
     (text: string) => out.write(`\x1b[2K${text}\r`),
     () => out.write('\n'),
@@ -29,14 +30,17 @@ export const getOutputProgress = (out: NodeJS.WriteStream = process.stdout): [pu
  * setTimeout(() => complete(), 5000);
  * ```
  */
-export const getOutputDefaultPercentProgress = (countSquare: number = 20, out: NodeJS.WriteStream = process.stdout): [put: (percent: number) => void, complete: () => void] => {
-  const [progress, complete] = getOutputProgress(out);
+export const getOutputDefaultPercentProgress = (args?: { prefix?: string, countSquare?: number, out?: NodeJS.WriteStream, }): [put: (percent: number) => void, complete: () => void] => {
+  const out = args?.out ?? process.stdout;
+  const countSquare = args?.countSquare ?? 20;
+  const prefix = args?.prefix ?? '';
+  const [progress, complete] = getOutputProgress({ out });
   return [
     (percent: number) => {
       const complete = Math.floor(countSquare * percent);
       const uncomplete = countSquare - complete;
       const roundPercent = Math.round(100 * percent);
-      progress(`[${'o'.repeat(complete)}${'.'.repeat(uncomplete)}]  ${roundPercent}%`);
+      progress(`${prefix}[${'o'.repeat(complete)}${'.'.repeat(uncomplete)}]  ${roundPercent}%`);
     },
     complete
   ];
