@@ -9,3 +9,7 @@
 - v1.5.0 convertCsvStringの追加
 - v1.6.0 outerProdの追加
 - v1.7.0 innerProdの追加
+- v1.8.0 Arrの追加
+- v1.9.0 MyDateの追加
+- v1.10.0 timeMeasureの追加
+- v1.11.0 getHtmlColorの追加

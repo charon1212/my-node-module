@@ -7,3 +7,4 @@ export * from './main/csv';
 export * from './main/array';
 export * from './main/MyDate';
 export * from './main/timeMeasure';
+export * from './main/getHtmlColor';
