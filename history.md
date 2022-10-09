@@ -13,3 +13,4 @@
 - v1.9.0 MyDateの追加
 - v1.10.0 timeMeasureの追加
 - v1.11.0 getHtmlColorの追加
+- v1.12.0 pipeの追加
