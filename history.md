@@ -15,3 +15,4 @@
 - v1.11.0 getHtmlColorの追加
 - v1.12.0 pipeの追加
 - v1.13.0 useOutputProgressの追加
+- v1.13.0 IFの追加

@@ -10,3 +10,4 @@ export * from './main/timeMeasure';
 export * from './main/getHtmlColor';
 export * from './main/pipe';
 export * from './main/cli';
+export * from './main/if';
