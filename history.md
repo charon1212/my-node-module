@@ -17,3 +17,4 @@
 - v1.13.0 useOutputProgressの追加
 - v1.14.0 IFの追加
 - v1.15.0 NominalTypeの追加
+- v1.16.0 convertCharRomanToHiraganaの追加
