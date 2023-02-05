@@ -35,14 +35,14 @@ export class MyDate {
     return utc ?
       format
         .replace(/yyyy/g, `${this.utc_y}`.padStart(4, '0'))
-        .replace(/MM/g, `${this.utc_M}`.padStart(2, '0'))
+        .replace(/MM/g, `${this.utc_M + 1}`.padStart(2, '0'))
         .replace(/dd/g, `${this.utc_d}`.padStart(2, '0'))
         .replace(/hh/g, `${this.utc_h}`.padStart(2, '0'))
         .replace(/mm/g, `${this.utc_m}`.padStart(2, '0'))
         .replace(/ss/g, `${this.utc_s}`.padStart(2, '0'))
         .replace(/SSS/g, `${this.utc_S}`.padStart(3, '0'))
         .replace(/y/g, `${this.utc_y}`)
-        .replace(/M/g, `${this.utc_M}`)
+        .replace(/M/g, `${this.utc_M + 1}`)
         .replace(/d/g, `${this.utc_d}`)
         .replace(/h/g, `${this.utc_h}`)
         .replace(/m/g, `${this.utc_m}`)
@@ -51,14 +51,14 @@ export class MyDate {
       :
       format
         .replace(/yyyy/g, `${this.y}`.padStart(4, '0'))
-        .replace(/MM/g, `${this.M}`.padStart(2, '0'))
+        .replace(/MM/g, `${this.M + 1}`.padStart(2, '0'))
         .replace(/dd/g, `${this.d}`.padStart(2, '0'))
         .replace(/hh/g, `${this.h}`.padStart(2, '0'))
         .replace(/mm/g, `${this.m}`.padStart(2, '0'))
         .replace(/ss/g, `${this.s}`.padStart(2, '0'))
         .replace(/SSS/g, `${this.S}`.padStart(3, '0'))
         .replace(/y/g, `${this.y}`)
-        .replace(/M/g, `${this.M}`)
+        .replace(/M/g, `${this.M + 1}`)
         .replace(/d/g, `${this.d}`)
         .replace(/h/g, `${this.h}`)
         .replace(/m/g, `${this.m}`)
