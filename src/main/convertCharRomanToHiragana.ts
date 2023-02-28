@@ -67,12 +67,9 @@ const converter = (c: string, m: string): { r: string, m: string } => {
   const m3 = m[ml - 3]; // 最後から3文字目
 
   if (b === -1) { // i文字目がa,i,u,e,o以外
-    if (c === 'n') {
-      if (m.endsWith('n')) return { r: m.slice(0, ml - 1) + 'ん', m: '' };
-      else return { r: '', m: m + c };
-    }
-    if (m.endsWith('n')) return { r: m.slice(0, ml - 1) + 'ん', m: c };
-    else return { r: '', m: m + c };
+    if (!m.endsWith('n')) return { r: '', m: m + c };
+    if (c === 'y') return { r: '', m: m + c };
+    return { r: m.slice(0, ml - 1) + 'ん', m: c === 'n' ? '' : c };
   } else { // cが母音
     if (b === 2) { // cがuの場合、先に「っ」の処理をかませる。
       // めちゃくちゃJavaScriptチックな書き方。ifの中身は、lts,lt,xtについてループし、mがその文字で終わってる場合、rとmに変換をかませてtrueを返却する。

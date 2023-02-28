@@ -8,6 +8,7 @@ describe('convertCharRomanToHiragana.test', () => {
       'haruhaakebono yauyausirokunariyukuyamagihasukosiakaritemurasakidatitarukumonohosokutanabikitaru',
       'はるはあけぼの やうやうしろくなりゆくやまぎはすこしあかりてむらさきだちたるくものほそくたなびきたる'
     ],
+    ['nyawwnyiwwnyuwwnyewwnyo', 'にゃwwにぃwwにゅwwにぇwwにょ'],
   ];
   it.each(testData)('test-1', (roman, hiragana) => {
     expect(convertCharRomanToHiragana(roman)).toBe(hiragana);
