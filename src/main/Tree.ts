@@ -5,17 +5,24 @@ export class MyTree<T>{
   private root_: MyNode<T> | undefined;
   get root() { return this.root_; }
   constructor(root?: T) { this.root_ = root && new MyNode<T>({ value: root }); }
+  clone(): MyTree<T> {
+    const newTree = new MyTree<T>();
+    newTree.root_ = this.root_;
+    return newTree;
+  }
   setRoot(root: T) { this.root_ = new MyNode<T>({ value: root }); }
 }
 
 export class MyNode<T>{
   public readonly parent: MyNode<T> | undefined;
-  public readonly children: MyNode<T>[] = [];
+  public readonly children: MyNode<T>[];
   public value: T;
-  constructor({ value, parent }: { value: T, parent?: MyNode<T> }) {
+  constructor({ value, parent, children }: { value: T, parent?: MyNode<T>, children?: MyNode<T>[] }) {
     this.value = value;
     this.parent = parent;
+    this.children = children || [];
   }
+  clone() { return new MyNode<T>({ value: this.value, parent: this.parent, children: this.children }); }
 
   /** root要素か判定する。 */
   get isRoot() {
