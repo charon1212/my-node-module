@@ -2,10 +2,10 @@
  * 根付き木
  */
 export class MyTree<T>{
-  public readonly root: MyNode<T>;
-  constructor(root: T) {
-    this.root = new MyNode<T>({ value: root });
-  }
+  private root_: MyNode<T> | undefined;
+  get root() { return this.root_; }
+  constructor(root?: T) { this.root_ = root && new MyNode<T>({ value: root }); }
+  setRoot(root: T) { this.root_ = new MyNode<T>({ value: root }); }
 }
 
 export class MyNode<T>{
