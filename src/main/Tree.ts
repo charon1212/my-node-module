@@ -44,4 +44,12 @@ export class MyNode<T>{
     }
     return arr.reverse();
   }
+
+  log(toStr: (value: T) => string, indent: string = '  ', separator: string = '\n'): string {
+    return this.log_(toStr, indent, separator).join(separator);
+  }
+  private log_(toStr: (value: T) => string, indent: string = '  ', separator: string = '\n'): string[] {
+    const o = this.children.map((child) => child.log_(toStr, indent, separator)).reduce((p, c) => [...p, ...c], []).map((v) => `${indent}${v}`);
+    return [`${toStr(this.value)}`, ...o];
+  }
 }
