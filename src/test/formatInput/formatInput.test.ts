@@ -1,4 +1,4 @@
-import { formatInput } from '../../main/formatInput';
+import { formatInput } from '../../index';
 import { myAssertEqual } from '../util/assert/myAssert';
 
 describe('convertCharRomanToHiragana.test', () => {

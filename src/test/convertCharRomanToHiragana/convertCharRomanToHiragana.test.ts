@@ -1,4 +1,4 @@
-import { convertCharRomanToHiragana } from '../../main/convertCharRomanToHiragana';
+import { convertCharRomanToHiragana } from '../../index';
 
 describe('convertCharRomanToHiragana.test', () => {
   const testData = [

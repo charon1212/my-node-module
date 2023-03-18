@@ -19,3 +19,4 @@
 - v1.15.0 NominalTypeの追加
 - v1.16.0 convertCharRomanToHiraganaの追加
 - v1.17.0 formatInputの追加
+- v1.18.0 ShiftJISエンコードの削除
