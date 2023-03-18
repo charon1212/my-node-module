@@ -13,3 +13,4 @@ export * from './main/if';
 export * from './main/nominalType';
 export * from './main/convertCharRomanToHiragana';
 export * from './main/formatInput';
+export * from './main/Tree';
