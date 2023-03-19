@@ -5,12 +5,33 @@ export class MyTree<T>{
   private root_: MyNode<T> | undefined;
   get root() { return this.root_; }
   constructor(root?: T) { this.root_ = root && new MyNode<T>({ value: root }); }
-  clone(): MyTree<T> {
+  clone(): MyTree<T> { return MyTree.createFromRootNode(this.root_); }
+  static createFromRootNode<T>(root?: MyNode<T>) {
     const newTree = new MyTree<T>();
-    newTree.root_ = this.root_;
+    newTree.root_ = root;
     return newTree;
   }
   setRoot(root: T) { this.root_ = new MyNode<T>({ value: root }); }
+
+  /** 深さ優先探索 */
+  dfs(proc: (value: T) => unknown) { this.dbfs(proc, (arr) => arr.pop()); }
+  /** 幅優先探索 */
+  bfs(proc: (value: T) => unknown) { this.dbfs(proc, (arr) => arr.shift()); }
+  /**
+   * BFSとDFSの実装が似ているため共通化。違うのは記憶配列から要素を取得する部分だけ。
+   * popを指定すれば深さ優先探索、shiftを指定すれば幅優先探索。
+   */
+  private dbfs(proc: (value: T) => unknown, getter: (arr: MyNode<T>[]) => MyNode<T> | undefined) {
+    if (!this.root_) return;
+    const arr = [this.root_];
+    while (true) {
+      const top = getter(arr);
+      if (!top) break;
+      proc(top.value);
+      arr.push(...top.children);
+    }
+  }
+
 }
 
 export class MyNode<T>{
@@ -23,6 +44,7 @@ export class MyNode<T>{
     this.children = children || [];
   }
   clone() { return new MyNode<T>({ value: this.value, parent: this.parent, children: this.children }); }
+  subTree() { return MyTree.createFromRootNode(this); }
 
   /** root要素か判定する。 */
   get isRoot() {

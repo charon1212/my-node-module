@@ -1,6 +1,6 @@
 {
   "name": "util-charon1212",
-  "version": "1.19.3",
+  "version": "1.19.4",
   "description": "Util library for me",
   "main": "build/index.js",
   "types": "build/index.d.ts",
