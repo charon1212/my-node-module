@@ -1,3 +1,5 @@
+type TreeSerializeObject = { children: number[], str: string, }[];
+
 /**
  * 根付き木
  */
@@ -14,22 +16,53 @@ export class MyTree<T>{
   setRoot(root: T) { this.root_ = new MyNode<T>({ value: root }); }
 
   /** 深さ優先探索 */
-  dfs(proc: (value: T) => unknown) { this.dbfs(proc, (arr) => arr.pop()); }
+  dfs(proc: (value: MyNode<T>) => unknown) { this.dbfs(proc, (arr) => arr.pop()); }
   /** 幅優先探索 */
-  bfs(proc: (value: T) => unknown) { this.dbfs(proc, (arr) => arr.shift()); }
+  bfs(proc: (value: MyNode<T>) => unknown) { this.dbfs(proc, (arr) => arr.shift()); }
   /**
    * BFSとDFSの実装が似ているため共通化。違うのは記憶配列から要素を取得する部分だけ。
    * popを指定すれば深さ優先探索、shiftを指定すれば幅優先探索。
    */
-  private dbfs(proc: (value: T) => unknown, getter: (arr: MyNode<T>[]) => MyNode<T> | undefined) {
+  private dbfs(proc: (value: MyNode<T>) => unknown, getter: (arr: MyNode<T>[]) => MyNode<T> | undefined) {
     if (!this.root_) return;
     const arr = [this.root_];
     while (true) {
       const top = getter(arr);
       if (!top) break;
-      proc(top.value);
+      proc(top);
       arr.push(...top.children);
     }
+  }
+
+  serialize(toStr: (value: T) => string) {
+    const nodeList: MyNode<T>[] = [];
+    this.bfs((value) => nodeList.push(value));
+    const serializeObject: TreeSerializeObject = nodeList.map((v) => ({
+      str: toStr(v.value),
+      children: v.children.map((w) => nodeList.findIndex((y) => y === w)),
+    }));
+    return JSON.stringify(serializeObject);
+
+  }
+  static deserialize<T>(str: string, decode: (str: string) => T) {
+    const tree = new MyTree<T>();
+    const serializeObject = JSON.parse(str) as TreeSerializeObject;
+
+    if (serializeObject.length > 0) {
+      const rootObject = serializeObject[0];
+      tree.setRoot(decode(rootObject.str));
+      const arr: { parent: MyNode<T>, childIndex: number }[] = [];
+      rootObject.children.forEach((childIndex) => arr.push({ parent: tree.root!, childIndex }));
+      while (true) {
+        const top = arr.shift();
+        if (!top) break;
+        const child = serializeObject[top.childIndex];
+        const childNode = top.parent.addChild(decode(child.str));
+        child.children.forEach((childIndex) => arr.push({ parent: childNode, childIndex }));
+      }
+    }
+
+    return tree;
   }
 
 }
