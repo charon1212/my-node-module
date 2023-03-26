@@ -69,12 +69,13 @@ export class MyTree<T>{
 
 export class MyNode<T>{
   public readonly parent: MyNode<T> | undefined;
-  public readonly children: MyNode<T>[];
+  get children() { return this.children_; }
+  private children_: MyNode<T>[];
   public value: T;
   constructor({ value, parent, children }: { value: T, parent?: MyNode<T>, children?: MyNode<T>[] }) {
     this.value = value;
     this.parent = parent;
-    this.children = children || [];
+    this.children_ = children || [];
   }
   clone() { return new MyNode<T>({ value: this.value, parent: this.parent, children: this.children }); }
   subTree() { return MyTree.createFromRootNode(this); }
@@ -93,6 +94,24 @@ export class MyNode<T>{
     this.children.push(child);
     return child;
   }
+  /**
+   * 子供を削除する。
+   * @returns this
+   */
+  removeChild(value: MyNode<T>) {
+    this.children_ = this.children_.filter((v) => v !== value);
+    return this;
+  }
+  /**
+   * 子要素の順序を変更する。
+   * @param change 子要素の配列を元に、順序変更後の配列を指定する関数。
+   * @returns this
+   */
+  changeChildrenOrder(change: (children: MyNode<T>[]) => MyNode<T>[]) {
+    this.children_ = change(this.children_);
+    return this;
+  }
+
   /**
    * 根の要素からのNodeのリストを取得する。
    * @returns MyNodeの配列。最初の要素は根で、最後の要素はthisを示す。
