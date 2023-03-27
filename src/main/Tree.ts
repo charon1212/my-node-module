@@ -13,7 +13,7 @@ export class MyTree<T>{
     newTree.root_ = root;
     return newTree;
   }
-  setRoot(root: T) { this.root_ = new MyNode<T>({ value: root }); }
+  setRoot(root: T) { return this.root_ = new MyNode<T>({ value: root }); }
 
   /** 深さ優先探索 */
   dfs(proc: (value: MyNode<T>) => unknown) { this.dbfs(proc, (arr) => arr.pop()); }
@@ -63,6 +63,24 @@ export class MyTree<T>{
     }
 
     return tree;
+  }
+
+  map<S>(mapper: (value: T, node: MyNode<T>) => S): MyTree<S> {
+    const newTree = new MyTree<S>();
+    if (this.root_ === undefined) return newTree;
+    const newRoot = newTree.setRoot(mapper(this.root_.value, this.root_));
+    const arr: [MyNode<T>, MyNode<S>][] = [];
+    arr.push([this.root_, newRoot]);
+    while (true) {
+      const top = arr.shift();
+      if (!top) break;
+      const [oldNode, newNode] = top;
+      oldNode.children.forEach((childNode) => {
+        const newChildNode = newNode.addChild(mapper(childNode.value, childNode));
+        arr.push([childNode, newChildNode]);
+      });
+    }
+    return newTree;
   }
 
 }
