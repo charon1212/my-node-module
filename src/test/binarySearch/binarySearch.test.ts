@@ -1,4 +1,4 @@
-import { binarySearch } from '../../main/binarySearch';
+import { binarySearch } from '../../index';
 
 describe('binarySearch', () => {
   it('binarySearch1', () => {
