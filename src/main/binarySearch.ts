@@ -11,7 +11,7 @@
  *
  * @param arr 対象の配列。compareで指定する比較について昇順でソート済みであるとする。つまり、arrの各要素にcompareを適用した時、`[true, true,...,true,false,false,...,false]`といったように、左側にtrue、右側にfalseが寄るようにソートする。
  * @param compare 比較方法を指定する。
- * @returns compare(arr[i])がtrueとなるiのうち最大の値を返却する。compare(arr[0])の場合は-1を返却する。
+ * @returns compare(arr[i])がtrueとなるiのうち最大の値を返却する。!compare(arr[0])の場合は-1を返却する。
  */
 export const binarySearch = <T>(arr: T[], compare: (t: T) => boolean) => {
   if (arr.length === 0) return -1;
