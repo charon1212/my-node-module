@@ -15,3 +15,4 @@ export * from './main/convertCharRomanToHiragana';
 export * from './main/formatInput';
 export * from './main/Tree';
 export * from './main/binarySearch';
+export * from './main/aggregate';

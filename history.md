@@ -22,3 +22,4 @@
 - v1.18.0 ShiftJISエンコードの削除
 - v1.19.0 Treeの追加
 - v1.20.0 binarySearchの追加
+- v1.21.0 aggregateByKey,distinctArrayの追加
